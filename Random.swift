@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+class Random {
+    
+    class func number(x: Int) -> Int {
+        var result = Int(arc4random_uniform(UInt32(x)))
+        return result
+    }
+    
+}

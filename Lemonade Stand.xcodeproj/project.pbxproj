@@ -13,6 +13,9 @@
 		643E39961A188930008C7EB1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 643E39951A188930008C7EB1 /* Images.xcassets */; };
 		643E39991A188930008C7EB1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643E39971A188930008C7EB1 /* LaunchScreen.xib */; };
 		643E39A51A188930008C7EB1 /* Lemonade_StandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E39A41A188930008C7EB1 /* Lemonade_StandTests.swift */; };
+		643E39AF1A18894B008C7EB1 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E39AE1A18894B008C7EB1 /* Customer.swift */; };
+		643E39B11A1889EC008C7EB1 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E39B01A1889EC008C7EB1 /* Factory.swift */; };
+		643E39B31A188A12008C7EB1 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643E39B21A188A12008C7EB1 /* Random.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		643E399E1A188930008C7EB1 /* Lemonade StandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lemonade StandTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		643E39A31A188930008C7EB1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		643E39A41A188930008C7EB1 /* Lemonade_StandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lemonade_StandTests.swift; sourceTree = "<group>"; };
+		643E39AE1A18894B008C7EB1 /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Customer.swift; path = ../Customer.swift; sourceTree = "<group>"; };
+		643E39B01A1889EC008C7EB1 /* Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Factory.swift; path = ../Factory.swift; sourceTree = "<group>"; };
+		643E39B21A188A12008C7EB1 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Random.swift; path = ../Random.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,9 @@
 				643E398E1A188930008C7EB1 /* AppDelegate.swift */,
 				643E39901A188930008C7EB1 /* ViewController.swift */,
 				643E39921A188930008C7EB1 /* Main.storyboard */,
+				643E39B01A1889EC008C7EB1 /* Factory.swift */,
+				643E39AE1A18894B008C7EB1 /* Customer.swift */,
+				643E39B21A188A12008C7EB1 /* Random.swift */,
 				643E39951A188930008C7EB1 /* Images.xcassets */,
 				643E39971A188930008C7EB1 /* LaunchScreen.xib */,
 				643E398C1A188930008C7EB1 /* Supporting Files */,
@@ -212,6 +221,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643E39B11A1889EC008C7EB1 /* Factory.swift in Sources */,
+				643E39AF1A18894B008C7EB1 /* Customer.swift in Sources */,
+				643E39B31A188A12008C7EB1 /* Random.swift in Sources */,
 				643E39911A188930008C7EB1 /* ViewController.swift in Sources */,
 				643E398F1A188930008C7EB1 /* AppDelegate.swift in Sources */,
 			);

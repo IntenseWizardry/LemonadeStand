@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+import Foundation
+import UIKit
+
+
+struct Customer {
+    var likesDilutedLemonade = false
+    var likesEqualLemonade = false
+    var likesAcidicLemonade = false
+}
