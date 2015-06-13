@@ -31,10 +31,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var trashCan: UIButton!
     @IBOutlet weak var lemonadePriceAmountLabel: UILabel!
     
+    @IBOutlet weak var adsPriceTitleLabel: UILabel!
+    @IBOutlet weak var addAdButton: UIButton!
+    @IBOutlet weak var subtractAdButton: UIButton!
     
     var lemons = 0
     var money = 0
     var ice = 0
+    var popularity = 0
+    var popular = false
     
     var passers = 0
     var ads = 0
@@ -54,12 +59,13 @@ class ViewController: UIViewController {
     var lemonadePrice = 2
     var lemonadePriceCustomerDifference = 0
     
+    var inventory = 0
+    var ingredients = 0
+    var lemonadeFlavor = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupGame()
-        updateView()
-    
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,6 +76,7 @@ class ViewController: UIViewController {
         return true
     }
    
+    
     @IBAction func subtractLemonadePriceButton(sender: UIButton) {
         if lemonadePrice - 1 != 0 {
             lemonadePrice--
@@ -79,39 +86,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addLemonadePriceButton(sender: UIButton) {
-        if lemonadePrice + 1 != 4 {
+        if popular == true {
+            if lemonadePrice + 1 != 5 {
+                lemonadePrice++
+                updateLemonadePriceDifference(lemonadePrice)
+            }
+        }
+        
+        else if lemonadePrice + 1 != 4 {
             lemonadePrice++
             updateLemonadePriceDifference(lemonadePrice)
         }
-        else {
-            showAlertWithText(message: "You can not increase the price over $3!")
-        }
         updateView()
-    }
-    
-    @IBAction func resetButtonPressed(sender: UIButton) {
-        lemons = 0
-        money = 10
-        ice = 0
-        passers = 0
-        ads = 0
-        buyers = 0
-        lemonBuyAmount = 0
-        iceBuyAmount = 0
-        adBuyAmount = 0
-        lemonMixAmount = 0
-        iceMixAmount = 0
-        haveMixedToday = false
-        day = 1
-        weather()
-        trashCan.hidden = true
-        lemonadeType.hidden = true
-        mixInfoLabel.hidden = true
-        startDayButton.setTitle("Start Day 1!", forState: UIControlState.Normal)
-        lemonadePrice = 2
-        lemonadePriceCustomerDifference = 0
-        updateView()
-        weatherImageView.image = UIImage(named: "Mild")
     }
     
     @IBAction func trashCanButtonPressed(sender: UIButton) {
@@ -166,7 +152,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func buyButtonPressed(sender: UIButton) {
-        
         var currentMoney = money
         
         money -= 2 * lemonBuyAmount
@@ -187,9 +172,6 @@ class ViewController: UIViewController {
             adBuyAmount = 0
         }
         updateView()
-        if (lemons == 0 || ice == 0) && money < 2 {
-            showAlertWithText(header: "You Lose!", message: "Insufficient Funds To Continue!")
-        }
     }
     
 
@@ -199,6 +181,7 @@ class ViewController: UIViewController {
         }
         else {
             iceMixAmount++
+            ingredients++
             updateInfoLabel()
         }
         updateView()
@@ -207,6 +190,7 @@ class ViewController: UIViewController {
     @IBAction func subtractMixIceButtonPressed(sender: UIButton) {
         if iceMixAmount > 0 {
             iceMixAmount--
+            ingredients--
             updateView()
             updateInfoLabel()
         }
@@ -218,6 +202,7 @@ class ViewController: UIViewController {
         }
         else {
             lemonMixAmount++
+            ingredients++
             updateInfoLabel()
         }
         updateView()
@@ -226,13 +211,13 @@ class ViewController: UIViewController {
     @IBAction func subtractMixLemonButtonPressed(sender: UIButton) {
         if lemonMixAmount > 0 {
             lemonMixAmount--
+            ingredients--
             updateView()
             updateInfoLabel()
         }
     }
     
     @IBAction func mixButtonPressed(sender: UIButton) {
-        
         var mixedLemonade: Double = Double(lemonMixAmount) / Double(iceMixAmount)
         
         if haveMixedToday != true {
@@ -242,31 +227,36 @@ class ViewController: UIViewController {
             
             lemonadeType.hidden = false
             trashCan.hidden = false
+            inventory = ingredients * 2
             
             if mixedLemonade == 1 {
                 lemonadeIsNeutral = true
                 haveMixedToday = true
-                lemonadeType.text = "Neutral"
+                lemonadeFlavor = " neutral"
+                lemonadeType.text = "\(inventory)" + lemonadeFlavor
                 ice -= iceMixAmount
                 lemons -= lemonMixAmount
             }
             else if mixedLemonade >= 0.5 && mixedLemonade < 1.0 {
                 lemonadeIsDiluted = true
                 haveMixedToday = true
-                lemonadeType.text = "Diluted"
+                lemonadeFlavor = " diluted"
+                lemonadeType.text = "\(inventory)" + lemonadeFlavor
                 ice -= iceMixAmount
                 lemons -= lemonMixAmount
             }
             else if mixedLemonade <= 2.0 && mixedLemonade > 1.0 {
                 lemonadeIsAcidic = true
                 haveMixedToday = true
-                lemonadeType.text = "Acidic"
+                lemonadeFlavor = " acidic"
+                lemonadeType.text = "\(inventory)" + lemonadeFlavor
                 ice -= iceMixAmount
                 lemons -= lemonMixAmount
             }
             else if mixedLemonade < 0.5 && mixedLemonade > 0 {
                 haveMixedToday = true
-                lemonadeType.text = "Too Diluted"
+                lemonadeFlavor = " too diluted"
+                lemonadeType.text = "\(inventory)" + lemonadeFlavor
                 ice -= iceMixAmount
                 lemons -= lemonMixAmount
             }
@@ -278,7 +268,8 @@ class ViewController: UIViewController {
             }
             else if mixedLemonade > 2.0 {
                 haveMixedToday = true
-                lemonadeType.text = "Too Acidic"
+                lemonadeFlavor = " too acidic"
+                lemonadeType.text = "\(inventory)" + lemonadeFlavor
                 ice -= iceMixAmount
                 lemons -= lemonMixAmount
             }
@@ -293,6 +284,7 @@ class ViewController: UIViewController {
             lemonMixAmount = 0
             iceMixAmount = 0
             
+            ingredients = 0
             updateView()
         }
         else {
@@ -305,8 +297,13 @@ class ViewController: UIViewController {
     @IBAction func startDayButtonPressed(sender: UIButton) {
         
         if haveMixedToday == true {
-            
             day++
+            
+            if money >= 20 || day == 7 {
+                adThingsHidden(false)
+                showAlertWithText(header: "Congragulations!", message: "You have now unlocked ads! Up to three ads can be purchased a day, and they will give you extra customers on the day that you purchase them.")
+            }
+            
             startDayButton.setTitle("Start Day " + "\(day)" + "!" , forState: UIControlState.Normal)
             haveMixedToday = false
             lemonadeType.hidden = true
@@ -314,130 +311,156 @@ class ViewController: UIViewController {
             
             passers = 0
             buyers = 0
+            var newInventory = 0
+            
+            var mixedLemonade: Double = Double(lemonMixAmount) / Double(iceMixAmount)
+            var oldCustomersCount = 0
             
             let baseCustomers = Factory.amountOfCustomers()
             var todaysCustomersCount = baseCustomers + weatherAddition + lemonadePriceCustomerDifference + (ads * 5)
-            
-            println("Base Customers:" + "\(baseCustomers)")
-            println("Weather Addition:" + "\(weatherAddition)")
-            println("Lemonade Price Difference:" + "\(lemonadePriceCustomerDifference)")
-            println("Ad Customers:" + "\(ads * 5)")
-            println("Todays Total Customers Before Test: " + "\(todaysCustomersCount)")
+        
             
             if testForNoCustomers(todaysCustomersCount) == false {
                 todaysCustomersCount = 0
             }
-            
-            println("Todays Total Customers After Test: " + "\(todaysCustomersCount)")
+
             
             var todaysCustomers = Factory.createManyCustomers(todaysCustomersCount)
             
-            
             ads = 0
             
-            println(lemonadePrice)
+            println(lemonadePriceCustomerDifference)
+            
             for customer in todaysCustomers {
                 if customer.likesEqualLemonade == true {
-                    if lemonadeType.text == "Neutral" {
+                    if lemonadeFlavor == " neutral" {
                         buyers++
                         money += lemonadePrice
+                        newInventory++
+                        popularity++
                     }
                     else {
                         passers++
                     }
                 }
                 else if customer.likesAcidicLemonade == true {
-                    if lemonadeType.text == "Acidic" {
+                    if lemonadeFlavor == " acidic" {
                         buyers++
                         money += lemonadePrice
+                        newInventory++
+                        popularity++
                     }
                     else {
                         passers++
                     }
                 }
                 else if customer.likesDilutedLemonade == true {
-                    if lemonadeType.text == "Diluted" {
+                    if lemonadeFlavor == " diluted" {
                         buyers++
                         money += lemonadePrice
+                        newInventory++
+                        popularity++
                     }
                     else {
                         passers++
                     }
                 }
             }
+            
+            if newInventory > inventory {
+                var overInventory = newInventory - inventory
+                money -= lemonadePrice * overInventory
+                buyers -= overInventory
+                passers += overInventory
+                popularity -= overInventory
+            }
             lemonMixAmount = 0
             iceMixAmount = 0
             lemonBuyAmount = 0
             iceBuyAmount = 0
-            lemonadePrice = 2
+            if popular == true {
+                lemonadePrice = 3
+            }
+            else {
+                lemonadePrice = 2
+            }
             lemonadePriceCustomerDifference = 0
             weatherAddition = weather()
+            inventory = 0
+            newInventory = 0
+            lemonadeFlavor = ""
             updateView()
+            
+            if popularity >= 50 && popular == false {
+                showAlertWithText(header: "Congragulations!", message: "You are now very popular! You can charge up to four dollars for your lemonade, and charging three dollars for lemonade will no longer decrease your popularity!")
+                lemonadePrice = 3
+                popular = true
+            }
         }
         else {
             showAlertWithText(message: "You have not mixed yet!")
         }
     }
     
+    
     func showAlertWithText (header: String = "Warning", message: String) {
         var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
-
-    func updateView() {
-        lemonInventoryAmountLabel.text = "\(lemons)"
-        moneyInventoryAmountLabel.text = "$" + "\(money)"
-        iceInventoryAmountLabel.text = "\(ice)"
-        passersInventoryAmountLabel.text = "\(passers)"
-        adInventoryAmountLabel.text = "\(ads)"
-        buyersInventoryAmountLabel.text = "\(buyers)"
-    
-        lemonBuyAmountLabel.text = "\(lemonBuyAmount)"
-        iceBuyAmountLabel.text = "\(iceBuyAmount)"
-        adBuyAmountLabel.text = "\(adBuyAmount)"
-    
-        lemonMixAmountLabel.text = "\(lemonMixAmount)"
-        iceMixAmountLabel.text = "\(iceMixAmount)"
-        lemonadePriceAmountLabel.text = "$" + "\(lemonadePrice)"
-    }
     
     func setupGame() {
         money = 10
+        adThingsHidden(true)
         updateView()
     }
     
     func updateLemonadePriceDifference(price: Int) {
-        if price == 1 {
-            lemonadePriceCustomerDifference = 3
+        if popular == true {
+            if price == 1 {
+                lemonadePriceCustomerDifference = 4
+            }
+            else if price == 2 {
+                lemonadePriceCustomerDifference = 2
+            }
+            else if price == 3 {
+                lemonadePriceCustomerDifference = 0
+            }
+            else if price == 4 {
+                lemonadePriceCustomerDifference = -3
+            }
         }
-        else if price == 2 {
-            lemonadePriceCustomerDifference = 0
-        }
-        else if price == 3 {
-            lemonadePriceCustomerDifference = -2
+        else {
+            if price == 1 {
+                lemonadePriceCustomerDifference = 3
+            }
+            else if price == 2 {
+                lemonadePriceCustomerDifference = 0
+            }
+            else if price == 3 {
+                lemonadePriceCustomerDifference = -3
+            }
         }
     }
-    
     
     func updateInfoLabel() {
         if lemonMixAmount != 0 && iceMixAmount != 0 {
             var mixedLemonade: Double = Double(lemonMixAmount)/Double(iceMixAmount)
             mixInfoLabel.hidden = false
             if mixedLemonade == 1 {
-                mixInfoLabel.text = "This is neutral lemonade."
+                mixInfoLabel.text = "This is " + "\(ingredients * 2)" + " cups of neutral lemonade."
             }
             else if mixedLemonade >= 0.5 && mixedLemonade < 1.0  {
-                mixInfoLabel.text = "This is diluted lemonade."
+                mixInfoLabel.text = "This is " + "\(ingredients * 2)" + " cups of diluted lemonade."
             }
             else if mixedLemonade <= 2.0 && mixedLemonade > 1.0 {
-                mixInfoLabel.text = "This is sour lemonade."
+                mixInfoLabel.text = "This is " + "\(ingredients * 2)" + " cups of sour lemonade."
             }
             else if mixedLemonade < 0.5 {
-                mixInfoLabel.text = "This lemonade is too diluted."
+                mixInfoLabel.text = "This is " + "\(ingredients * 2)" + " cups of very diluted lemonade."
             }
             else if mixedLemonade > 2.0 {
-                mixInfoLabel.text = "This lemonade is too sour."
+                mixInfoLabel.text = "This is " + "\(ingredients * 2)" + " cups of very sour lemonade."
             }
         }
         else {
@@ -453,6 +476,7 @@ class ViewController: UIViewController {
             return true
         }
     }
+    
     func weather() -> Int {
         
         var weatherNumber = Random.number(4)
@@ -474,6 +498,70 @@ class ViewController: UIViewController {
             return 0
         }
     }
+
+    func updateView() {
+        lemonInventoryAmountLabel.text = "\(lemons)"
+        moneyInventoryAmountLabel.text = "$" + "\(money)"
+        iceInventoryAmountLabel.text = "\(ice)"
+        passersInventoryAmountLabel.text = "\(passers)"
+        adInventoryAmountLabel.text = "\(ads)"
+        buyersInventoryAmountLabel.text = "\(buyers)"
+        
+        lemonBuyAmountLabel.text = "\(lemonBuyAmount)"
+        iceBuyAmountLabel.text = "\(iceBuyAmount)"
+        adBuyAmountLabel.text = "\(adBuyAmount)"
+        
+        lemonMixAmountLabel.text = "\(lemonMixAmount)"
+        iceMixAmountLabel.text = "\(iceMixAmount)"
+        lemonadePriceAmountLabel.text = "$" + "\(lemonadePrice)"
+    }
+    
+    func adThingsHidden(hidden: Bool) {
+        if hidden == true {
+            adBuyAmountLabel.hidden = true
+            addAdButton.hidden = true
+            subtractAdButton.hidden = true
+            adsPriceTitleLabel.hidden = true
+        }
+        else if hidden == false {
+            adBuyAmountLabel.hidden = false
+            addAdButton.hidden = false
+            subtractAdButton.hidden = false
+            adsPriceTitleLabel.hidden = false
+        }
+    }
+    
+    @IBAction func resetButtonPressed(sender: UIButton) {
+        lemons = 0
+        money = 10
+        ice = 0
+        passers = 0
+        ads = 0
+        buyers = 0
+        lemonBuyAmount = 0
+        iceBuyAmount = 0
+        adBuyAmount = 0
+        lemonMixAmount = 0
+        iceMixAmount = 0
+        haveMixedToday = false
+        day = 1
+        adBuyAmountLabel.hidden = true
+        addAdButton.hidden = true
+        subtractAdButton.hidden = true
+        adsPriceTitleLabel.hidden = true
+        weather()
+        adThingsHidden(true)
+        startDayButton.setTitle("Start Day 1!", forState: UIControlState.Normal)
+        lemonadePrice = 2
+        lemonadePriceCustomerDifference = 0
+        ingredients = 0
+        inventory = 0
+        lemonadeFlavor = ""
+        updateView()
+        weatherImageView.image = UIImage(named: "Mild")
+        popularity = 0
+    }
+
 }
 
 

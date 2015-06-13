@@ -10,9 +10,7 @@ import Foundation
 
 class Factory {
     
-    
     class func createCustomer() -> Customer {
-        
         var customer = Customer()
         
         let lemonadePreferenceNumber = Random.number(3)
@@ -37,7 +35,6 @@ class Factory {
             var newCustomer = Factory.createCustomer()
             customers.append(newCustomer)
         }
-        
         return customers
     }
     

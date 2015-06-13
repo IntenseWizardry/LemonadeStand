@@ -168,18 +168,6 @@
                                             <rect key="frame" x="261" y="120" width="97" height="21"/>
                                         </variation>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLs-zm-FCk">
-                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                        <state key="normal" title="throwAway" image="trashcan">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="343" y="118" width="25" height="25"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="trashCanButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XzD-7b-8ys"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0l-dh-Dvd" userLabel="reset">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" title="Button" image="reset">
@@ -192,15 +180,6 @@
                                             <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K1E-4u-cYs"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lemonade Price:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPY-jI-5hK">
-                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="112" y="147" width="151" height="21"/>
-                                        </variation>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jgu-3S-cLn">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal" title="Button" image="plusSign">
@@ -234,6 +213,27 @@
                                             <rect key="frame" x="138" y="173" width="75" height="21"/>
                                         </variation>
                                     </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLs-zm-FCk">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal" title="throwAway" image="trashcan">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="297" y="143" width="25" height="25"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="trashCanButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XzD-7b-8ys"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lemonade Price:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPY-jI-5hK">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="102" y="147" width="151" height="21"/>
+                                        </variation>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="default">
@@ -255,12 +255,12 @@
                                         <exclude reference="QXL-xp-3E2"/>
                                         <exclude reference="pCj-PD-PP9"/>
                                         <exclude reference="Qu7-pz-a7k"/>
-                                        <exclude reference="gLs-zm-FCk"/>
                                         <exclude reference="Y0l-dh-Dvd"/>
-                                        <exclude reference="KPY-jI-5hK"/>
                                         <exclude reference="Jgu-3S-cLn"/>
                                         <exclude reference="RBf-Wh-B2E"/>
                                         <exclude reference="NIu-7T-v62"/>
+                                        <exclude reference="gLs-zm-FCk"/>
+                                        <exclude reference="KPY-jI-5hK"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
@@ -283,12 +283,12 @@
                                         <include reference="QXL-xp-3E2"/>
                                         <include reference="pCj-PD-PP9"/>
                                         <include reference="Qu7-pz-a7k"/>
-                                        <include reference="gLs-zm-FCk"/>
                                         <include reference="Y0l-dh-Dvd"/>
-                                        <include reference="KPY-jI-5hK"/>
                                         <include reference="Jgu-3S-cLn"/>
                                         <include reference="RBf-Wh-B2E"/>
                                         <include reference="NIu-7T-v62"/>
+                                        <include reference="gLs-zm-FCk"/>
+                                        <include reference="KPY-jI-5hK"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -698,6 +698,8 @@
                     <connections>
                         <outlet property="adBuyAmountLabel" destination="OCK-pl-vlw" id="gzj-kE-3h0"/>
                         <outlet property="adInventoryAmountLabel" destination="eSB-ME-RB0" id="3Y0-8g-nkQ"/>
+                        <outlet property="addAdButton" destination="hx8-rx-FtD" id="bvP-1s-RCz"/>
+                        <outlet property="adsPriceTitleLabel" destination="t2p-us-AXj" id="Auh-FB-8jW"/>
                         <outlet property="buyersInventoryAmountLabel" destination="nbA-JI-s0p" id="14d-Jj-iIZ"/>
                         <outlet property="iceBuyAmountLabel" destination="KI9-CH-Wgc" id="yMy-Mw-d7x"/>
                         <outlet property="iceInventoryAmountLabel" destination="wue-67-7Wu" id="t1B-5B-hPA"/>
@@ -711,6 +713,7 @@
                         <outlet property="moneyInventoryAmountLabel" destination="O7v-Qz-HhX" id="GEM-3q-XPC"/>
                         <outlet property="passersInventoryAmountLabel" destination="LVs-Ho-TIV" id="wWH-k9-Qxp"/>
                         <outlet property="startDayButton" destination="T3U-lq-1yz" id="46g-3g-GBN"/>
+                        <outlet property="subtractAdButton" destination="0b8-xe-yfN" id="Ow9-jP-SEj"/>
                         <outlet property="trashCan" destination="gLs-zm-FCk" id="qeR-Tp-FBl"/>
                         <outlet property="weatherImageView" destination="qEW-Rk-DPq" id="PdL-YQ-Tdu"/>
                     </connections>

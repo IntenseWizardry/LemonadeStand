@@ -85,10 +85,10 @@
 			children = (
 				643E398E1A188930008C7EB1 /* AppDelegate.swift */,
 				643E39901A188930008C7EB1 /* ViewController.swift */,
-				643E39921A188930008C7EB1 /* Main.storyboard */,
 				643E39B01A1889EC008C7EB1 /* Factory.swift */,
 				643E39AE1A18894B008C7EB1 /* Customer.swift */,
 				643E39B21A188A12008C7EB1 /* Random.swift */,
+				643E39921A188930008C7EB1 /* Main.storyboard */,
 				643E39951A188930008C7EB1 /* Images.xcassets */,
 				643E39971A188930008C7EB1 /* LaunchScreen.xib */,
 				643E398C1A188930008C7EB1 /* Supporting Files */,
@@ -419,6 +419,7 @@
 				643E39AA1A188930008C7EB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		643E39AB1A188930008C7EB1 /* Build configuration list for PBXNativeTarget "Lemonade StandTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +428,7 @@
 				643E39AD1A188930008C7EB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
